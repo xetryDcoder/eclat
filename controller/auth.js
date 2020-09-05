@@ -1,4 +1,5 @@
 const User =  require('../model/user')
+const Profile =  require('../model/admin-profile')
 const bcrypt = require('bcryptjs')
 
 /* @displaying Login page */
@@ -22,9 +23,16 @@ exports.postLogin = (req, res, next) => {
         if(login) {
             bcrypt.compare(password, login.password, (error, same) => {
                 if(same) {
+                    /* Profile.findOne({adminId : req.session.userId}, (error, profile) => {
+                        if(!profile) {
+                            console.log('no profile')
+                        } else {
+                            console.log(profile)
+                            console.log('Yes profile') 
+                        }
+                    }) */
                     req.session.userId = login._id
-                    console.log(req.session.userId)
-                    res.redirect('/')
+                    res.redirect('/admin/edit-profile')
                 } else {
                     req.flash('message', 'Invalid Id Password')
                     res.redirect('/auth/login')

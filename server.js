@@ -12,7 +12,7 @@ const Admin = require('./model/admin')
 
 const app = express()
 
-mongoose.connect("mongodb://localhost/PMS")
+mongoose.connect("mongodb://localhost/PMS", { useFindAndModify: false })
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');

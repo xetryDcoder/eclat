@@ -8,6 +8,10 @@ const teamSchema = new Schema({
         type: String,
         required: true
     },
+    project: [{
+        type: Schema.Types.ObjectId,
+        ref:'Admin'
+    }],
     email: {
         type: String,
         required: true

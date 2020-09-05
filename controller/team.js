@@ -6,11 +6,14 @@ const path = require('path');
 
 /* @Display Team list */
 exports.getTeamList = (req, res, next) => {
-    Team.find()
+    const id = req.params.id
+    console.log(id)
+    Team.find({})
     .then(members => {
-        console.log('working')
+        console.log(members)
         res.render('team/team-list', {
-            member: members
+            member: members,
+            projectId: id
         })
     })
     
@@ -53,7 +56,7 @@ exports.postTeamCreate = (req, res, next) => {
                     requireTLS: true,
                     auth: {
                         user: 'ceramiclove3@gmail.com',
-                        pass: 'l10nh3art'
+                        pass: 'lamb0fg0d_x3try'
                     }
                 });
 

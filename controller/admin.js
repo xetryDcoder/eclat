@@ -1,7 +1,9 @@
 const Admin = require('../model/admin')
 const Profile = require('../model/admin-profile')
+const Team = require('../model/team')
 const path = require('path')
 const bodyParser = require('body-parser')
+const team = require('../model/team')
 
 /* @displaying add Dashboard page */
 exports.getDashboard = (req, res, next) => {
@@ -50,3 +52,30 @@ exports.getProjectList = (req, res, next) => {
 exports.getAllDev = (req, res, next) => {
     res.render('admin/all-dev')
 }
+
+/*@Submit assign project to developer */
+exports.putDevAssign = (req, res, next) => {
+    const {projectId, teamId} = req.body
+    
+    Team.findByIdAndUpdate(teamId, { project : projectId }, { new: true }).populate('project')
+    .then(result => {
+        const project = result.project
+        console.log("project" + project)
+        const member = result
+        console.log("member" + member)
+        res.render('team/project-list', {
+            result,
+            member
+        })
+        /* Team.findOne({ project : projectId }).populate('project')
+        .then(results => {
+            res.render('team/project-list', {
+                result: results
+            })
+        }) 
+        .catch(err => console.log(err))
+        */
+    })
+    .catch(err => console.log(err))
+}
+

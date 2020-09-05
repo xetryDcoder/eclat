@@ -44,12 +44,9 @@ const adminProfileSchema = new Schema({
         required: true
     },
     adminId: {
-        type: String,
-        required: true
-    },
-    userId : {
         type: Schema.Types.ObjectId,
-        ref:'User'
+        ref:'User',
+        required: true
     }
     
     /* ,

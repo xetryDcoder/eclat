@@ -38,7 +38,7 @@
                               <th scope="row">
                                 <div class="media align-items-center">
                                   <a href="#" class="avatar rounded-circle mr-3">
-                                    <img alt="Image placeholder" src="../../assets/img/theme/bootstrap.jpg">
+                                    <img alt="Image placeholder" src="<%= manager.logo%>">
                                   </a>
                                   <div class="media-body">
                                     <span class="name mb-0 text-sm"><%= manager.pName %></span>
@@ -86,6 +86,9 @@
                               </td>
                               
                               <td class="table-actions">
+                                <a href="/team-list/<%= manager._id %>" class="table-action table-action-delete" data-toggle="tooltip" data-original-title="Assign">
+                                  <i class="ni ni-active-40"></i>
+                                </a>
                                <a href="#!" class="table-action table-action-delete" data-toggle="tooltip" data-original-title="View project details">
                                  <i class="ni ni-badge"></i>
                                </a>

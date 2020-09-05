@@ -12,7 +12,8 @@
     <div class="row mt-2">
       <% if (member.length > 0) { %> 
         <% for (let members of member) { %>
-        <div class="col-md-4">
+        <form class="row" action="/putDevAssign" method="POST">
+          <div class="col-md-4">
             <div class="card card-profile">
                 <img src="../../assets/img/theme/img-1-1000x600.jpg" alt="Image placeholder" class="card-img-top">
                 <div class="row justify-content-center">
@@ -26,7 +27,7 @@
                 </div>
                 <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
                   <div class="d-flex justify-content-between">
-                    <a href="#" class="btn btn-sm btn-info mr-4">Assign</a>
+                    <button type="submit" class="btn btn-sm btn-info mr-4">Assign</button>
                     <a href="#" class="btn btn-sm btn-default float-right">Message</a>
                   </div>
                 </div>
@@ -55,6 +56,8 @@
                     <h5 class="h3">
                       Jessica Jones
                     </h5>
+                    <input type="hidden" value="<%= projectId %>" name="projectId" >
+                    <input type="hidden" value="<%= members._id %>" name="teamId" >
                     <h5 class="h5 text-warning">
                         <%= members.position %> 
                       </h5>
@@ -68,6 +71,7 @@
                 </div>
               </div>
         </div>
+        </form>
         <% } %>
       <% } else { %> 
         <div class="h1 card shadow p-3 mx-auto text-warning">
