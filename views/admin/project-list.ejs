@@ -13,11 +13,13 @@
           <div class="col-xl-12">
             <div class="row">
               <div class="col">
+                <% if(manager.length > 0){ %>
                 <div class="card">
                   <!-- Card header -->
                   <div class="card-header border-0">
                     <h3 class="mb-0">Running Projects</h3>
                   </div>
+                  
                   <div class="table-responsive">
                     <table class="table align-items-center table-flush">
                       <thead class="thead-light">
@@ -32,21 +34,23 @@
                         </tr>
                       </thead>
                       <tbody class="list">
-                        <% if (mngr.length > 0) { %>
-                          <% for (let manager of mngr) { %>
+                        <% if (message) { %>
+                            <p class="p-2 bg-danger text-center text-white border shadow-sm"><%= message %></p>
+                        <% } %>
+                        <% for (var i=0; i < length; i++) { console.log(length) %>
                             <tr>
                               <th scope="row">
                                 <div class="media align-items-center">
                                   <a href="#" class="avatar rounded-circle mr-3">
-                                    <img alt="Image placeholder" src="<%= manager.logo%>">
+                                    <img alt="Image placeholder" src="<%= manager[i].logo%>">
                                   </a>
                                   <div class="media-body">
-                                    <span class="name mb-0 text-sm"><%= manager.pName %></span>
+                                    <span class="name mb-0 text-sm"><%= manager[i].pName %></span>
                                   </div>
                                 </div>
                               </th>
                               <td class="budget">
-                               Rs.<%= manager.totalPrice %>
+                               Rs.<%= manager[i].totalPrice %>
                               </td>
                               <td>
                                 <span class="badge badge-dot mr-4">
@@ -55,23 +59,16 @@
                                 </span>
                               </td>
                               <td>
-                               <span><%= manager.number %></span><br>
-                               <span>h<%= manager.email %></span>
+                               <span><%= manager[i].number %></span><br>
+                               <span><%= manager[i].email %></span>
                              </td>
                               <td>
                                 <div class="avatar-group">
-                                  <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Ryan Tompson">
+                                  <% for( var j = 0; j < manager[i].dev.length; j++ ) { %>
+                                  <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="<%= manager[i].dev[j].name %>">
                                     <img alt="Image placeholder" src="../../assets/img/theme/team-1.jpg">
                                   </a>
-                                  <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Romina Hadid">
-                                    <img alt="Image placeholder" src="../../assets/img/theme/team-2.jpg">
-                                  </a>
-                                  <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Alexander Smith">
-                                    <img alt="Image placeholder" src="../../assets/img/theme/team-3.jpg">
-                                  </a>
-                                  <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Jessica Doe">
-                                    <img alt="Image placeholder" src="../../assets/img/theme/team-4.jpg">
-                                  </a>
+                                <% } %> 
                                 </div>
                               </td>
                               <td>
@@ -86,30 +83,30 @@
                               </td>
                               
                               <td class="table-actions">
-                                <a href="/team-list/<%= manager._id %>" class="table-action table-action-delete" data-toggle="tooltip" data-original-title="Assign">
+                                <a href="/team-list/<%= manager[i]._id %>" class="table-action table-action-delete" data-toggle="tooltip" data-original-title="Assign">
                                   <i class="ni ni-active-40"></i>
                                 </a>
-                               <a href="#!" class="table-action table-action-delete" data-toggle="tooltip" data-original-title="View project details">
+                               <a href="/project/<%= manager[i]._id %>" class="table-action table-action-delete" data-toggle="tooltip" data-original-title="View project details">
                                  <i class="ni ni-badge"></i>
                                </a>
                                <a href="#!" class="table-action" data-toggle="tooltip" data-original-title="Edit project">
                                  <i class="fas fa-user-edit"></i>
                                </a>
-                               <a href="#!" class="table-action table-action-delete" data-toggle="tooltip" data-original-title="Delete project">
+                               <a href="/project/<%= manager[i]._id %>" class="table-action table-action-delete" data-toggle="tooltip" data-original-title="Delete project">
                                  <i class="fas fa-trash"></i>
                                </a>
                              </td>
                             </tr>
                           <% } %>
-                        <% } else { %>
-                          <tr>
-                           <td class="text-center"><h3 class="text-center">No Project Found!</h3></td>
-                          </tr>
-                        <% } %>
                       </tbody>
                     </table>
                   </div>
                 </div>
+                <% } else{ %>  
+                            <div class="card-header border-0">
+                              <h3 class="mb-0 text-danger">No Any active project</h3>
+                            </div>
+                        <% } %>
               </div>
             </div>
           </div>

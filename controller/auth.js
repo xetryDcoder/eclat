@@ -32,7 +32,7 @@ exports.postLogin = (req, res, next) => {
                         }
                     }) */
                     req.session.userId = login._id
-                    res.redirect('/admin/edit-profile')
+                    res.redirect('/')
                 } else {
                     req.flash('message', 'Invalid Id Password')
                     res.redirect('/auth/login')

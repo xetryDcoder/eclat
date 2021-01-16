@@ -1,11 +1,12 @@
 const Team = require("../model/team")
+const Admin = require('../model/admin')
 const bcrypt = require("bcryptjs")
 var nodemailer = require('nodemailer');
-var hbs = require('nodemailer-express-handlebars');
 const path = require('path');
+const Todo = require('../model/teamModel/todo')
 
-/* @Display Team list */
-exports.getTeamList = (req, res, next) => {
+/* @Display Team list with id */
+exports.getTeamListWithId = (req, res, next) => {
     const id = req.params.id
     console.log(id)
     Team.find({})
@@ -14,6 +15,26 @@ exports.getTeamList = (req, res, next) => {
         res.render('team/team-list', {
             member: members,
             projectId: id
+        })
+    })
+    
+}
+
+/* @Display Team list */
+exports.getTeamList = (req, res, next) => {
+    let message = req.flash('message')
+    if (message.length > 0) {
+        message = message[0]
+    } else {
+        message = null;
+    }
+    Team.find({}).populate('project')
+    .then(members => {
+        console.log(members)
+        res.render('team/list.ejs', {
+            member: members,
+            result: members.project,
+            message
         })
     })
     
@@ -56,7 +77,7 @@ exports.postTeamCreate = (req, res, next) => {
                     requireTLS: true,
                     auth: {
                         user: 'ceramiclove3@gmail.com',
-                        pass: 'lamb0fg0d_x3try'
+                        pass: '###'
                     }
                 });
 
@@ -83,7 +104,6 @@ exports.postTeamCreate = (req, res, next) => {
                     if (error) {
                         return console.log(error.message);
                     }
-                    console.log('success');
                 });
                 res.redirect('/team-list')
             })
@@ -114,17 +134,55 @@ exports.postTeamLogin = (req, res, next) => {
                 if(same) {
                     req.session.teamId =  team._id
                     console.log(req.session.teamId)
-                    res.send('Loged In')
+                    res.redirect("/team-dashboard");
                 } else {
                     req.flash('message', 'Invalid Id/Password')
-                    console.log('hello1')
                     res.redirect('/team/login')
                 }
             })
         } else {
             req.flash('message', 'User Not found')
-            console.log('hello2')
             res.redirect('/auth/login')
         }
     })
 }
+
+/* @Render Team Dashboard */
+/* exports.getTeamDashboard = (req, res, next) => {
+    const teamId = req.session.teamId;
+    Team.findById(teamId).populate("todo")
+      .then((profile) => {
+        Todo.findOne({ teamId })
+          .then((todo) => {
+            res.render("team/team-dashboard", {
+              profile,
+              projects: profile.project,
+              todo
+            });
+          })
+          .catch((err) => {
+            console.log("error");
+          });
+      })
+      .catch((err) => {
+        console.log("error");
+      });
+} */
+
+/* @Render Team Dashboard */
+exports.getTeamDashboard = (req, res, next) => {
+    const teamId = req.session.teamId;
+    Team.findById(teamId).populate('todo').populate('project')
+    .then(profile => {
+        console.log(profile + 'hello')
+        res.render("team/team-dashboard", {
+          profile,
+          projects: profile.project,
+          todo: profile.todo
+        });
+    })
+    .catch(error => {
+        console.log(error)
+    })
+}
+

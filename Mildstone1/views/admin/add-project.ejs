@@ -1,0 +1,258 @@
+<%- include('../includes/head.ejs') %>
+
+<!-- Main content -->
+<div class="main-content" id="panel">
+    <!-- Topnav -->
+    <%- include('../includes/alttopnav.ejs') %>
+    <!-- Header -->
+    <!-- Header -->
+    <%- include('../includes/altheader.ejs') %>
+    <!-- Page content -->
+    <div class="container-fluid mt--6">
+       <form action="/add-Project" method="POST" enctype="multipart/form-data">
+           <div class="row">
+           <div class="col-lg-6">
+           <div class="card-wrapper">
+               <!-- Input groups -->
+               <div class="card">
+               <!-- Card header -->
+               <div class="card-header">
+                   <h3 class="mb-0">Project Details</h3>
+               </div>
+               <!-- Card body -->
+               <div class="card-body">
+                   <!-- Input groups with icon -->
+                   <div class="row">
+                       <div class="col-md-6">
+                       <div class="form-group">
+                           <div class="input-group input-group-merge">
+                           <div class="input-group-prepend">
+                               <span class="input-group-text"><i class="fas fa-user"></i></span>
+                           </div>
+                           <input class="form-control" placeholder="Project Name" type="text" name="pName">
+                           </div>
+                       </div>
+                       </div>
+                       <div class="col-md-6">
+                           <select class="form-control" data-toggle="select" name="category">
+                               <option value="ecommerce">E-commerce</option>
+                               <option value="organization">Organiations</option>
+                               <option value="education">Educational</option>
+                               <option value="application">Web Application</option>
+                               <option value="banks">Banks</option>
+                               <option value="others">Others</option>
+                           </select>
+                       </div>
+                   </div>
+                   <div class="row">
+                       <div class="col-md-6">
+                           <div class="form-group">
+                           <div class="input-group input-group-merge">
+                               <div class="input-group-prepend">
+                               <span class="input-group-text"><i class="fas fa-credit-card"></i></span>
+                               </div>
+                               <input class="form-control" placeholder="Total Price" type="text" name="totalPrice">
+                               <div class="input-group-append">
+                               <span class="input-group-text"><small class="font-weight-bold">NRP</small></span>
+                               </div>
+                           </div>
+                           </div>
+                       </div>
+                       <div class="col-md-6">
+                           <div class="form-group">
+                           <div class="input-group input-group-merge">
+                               <div class="input-group-prepend">
+                               <span class="input-group-text"><i class="fas fa-credit-card"></i></span>
+                               </div>
+                               <input class="form-control" placeholder="Advance" type="text" name="advance">
+                               <div class="input-group-append">
+                               <span class="input-group-text"><small class="font-weight-bold">NRP</small></span>
+                               </div>
+                           </div>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="row">
+                       <div class="custom-file col-md-12">
+                           <input type="file" class="custom-file-input" id="customFileLang" lang="en" name="logo">
+                           <label class="custom-file-label" for="customFileLang">Project Logo</label>
+                       </div>
+                   </div>
+               </div>
+               </div>
+               <!-- Datepicker -->
+               <div class="card">
+               <!-- Card header -->
+               <div class="card-header">
+                   <h3 class="mb-0">Deadlines</h3>
+               </div>
+               <!-- Card body -->
+               <div class="card-body">
+                   <div class="row input-daterange datepicker align-items-center">
+                       <div class="col">
+                       <div class="form-group">
+                           <label class="form-control-label">Start date</label>
+                           <input class="form-control" placeholder="Start date" type="text" value="06/18/2018" name="startDate">
+                       </div>
+                       </div>
+                       <div class="col">
+                       <div class="form-group">
+                           <label class="form-control-label">End date</label>
+                           <input class="form-control" placeholder="End date" type="text" value="06/22/2018"  name="endDate">
+                       </div>
+                       </div>
+                   </div>
+               </div>
+               </div>
+               <!-- Text editor -->
+               <div class="card">
+               <!-- Card header -->
+               <div class="card-header">
+                   <h3 class="mb-0">Other Information</h3>
+               </div>
+               <!-- Card body -->
+               <div class="card-body">
+                <textarea id="summernote" name="info"></textarea>
+               </div>
+               </div>
+           </div>
+           </div>
+           <div class="col-lg-6">
+           <div class="card-wrapper">
+               <!-- Tags -->
+               <div class="card">
+               <!-- Card header -->
+               <div class="card-header">
+                   <h3 class="mb-0">Client Details</h3>
+               </div>
+               <!-- Card body -->
+               <div class="card-body">
+                   <div class="card-body">
+                       <!-- Input groups with icon -->
+                       <div class="row">
+                       <div class="col-md-6">
+                           <div class="form-group">
+                           <div class="input-group input-group-merge">
+                               <div class="input-group-prepend">
+                               <span class="input-group-text"><i class="fas fa-user"></i></span>
+                               </div>
+                               <input class="form-control" placeholder="Client Name" type="text" name="cName">
+                           </div>
+                           </div>
+                       </div>
+                       <div class="col-md-6">
+                           <div class="form-group">
+                           <div class="input-group input-group-merge">
+                               <div class="input-group-prepend">
+                               <span class="input-group-text"><i class="fas fa-address-book"></i></span>
+                               </div>
+                               <input class="form-control" placeholder="Address" type="text" name="address">
+                           </div>
+                           </div>
+                       </div>
+                       </div>
+                       <div class="row">
+                           <div class="col-md-6">
+                           <div class="form-group">
+                               <div class="input-group input-group-merge">
+                               <div class="input-group-prepend">
+                                   <span class="input-group-text"><i class="fas fa-mail-bulk"></i></span>
+                               </div>
+                               <input class="form-control" placeholder="email" type="email" name="email">
+                               </div>
+                           </div>
+                           </div>
+                           <div class="col-md-6">
+                               <div class="form-group">
+                               <div class="input-group input-group-merge">
+                                   <div class="input-group-prepend">
+                                   <span class="input-group-text"><i class="fas fa-mobile"></i></span>
+                                   </div>
+                                   <input class="form-control" placeholder="Number" type="number" name="number">
+                               </div>
+                               </div>
+                           </div>
+                       </div>
+                       
+               </div>
+               </div>
+               </div>
+               <!-- Dropzone -->
+               <div class="card">
+               <!-- Card header -->
+               <div class="card-header">
+                   <h3 class="mb-0">Client Docs</h3>
+               </div>
+               <!-- Card body -->
+               <div class="card-body">
+                   <!-- Multiple -->
+                   <div class="dropzone dropzone-multiple" data-toggle="dropzone" data-dropzone-multiple data-dropzone-url="http://">
+                   <div class="fallback">
+                       <div class="custom-file">
+                       <input type="file" class="custom-file-input" id="customFileUploadMultiple"  name="docs">
+                       <label class="custom-file-label" for="customFileUploadMultiple">Choose file</label>
+                       </div>
+                   </div>
+                   <ul class="dz-preview dz-preview-multiple list-group list-group-lg list-group-flush">
+                       <li class="list-group-item px-0">
+                       <div class="row align-items-center">
+                           <div class="col-auto">
+                           <div class="avatar">
+                               <img class="avatar-img rounded" src="..." alt="..." data-dz-thumbnail>
+                           </div>
+                           </div>
+                           <div class="col ml--3">
+                           <h4 class="mb-1" data-dz-name>...</h4>
+                           <p class="small text-muted mb-0" data-dz-size>...</p>
+                           </div>
+                           <div class="col-auto">
+                           <div class="dropdown">
+                               <a href="#" class="dropdown-ellipses dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                               <i class="fe fe-more-vertical"></i>
+                               </a>
+                               <div class="dropdown-menu dropdown-menu-right">
+                               <a href="#" class="dropdown-item" data-dz-remove>
+                                   Remove
+                               </a>
+                               </div>
+                           </div>
+                           </div>
+                       </div>
+                       </li>
+                   </ul>
+                   </div>
+               </div>
+           </div>
+           <button type="submit" class="btn btn-success">Submit</button>
+           </div>
+           </div>
+           
+           </div>
+           
+       </form>
+    </div>
+  </div>
+  
+
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-lite.min.js"></script>
+
+<script>
+    $('textarea').summernote({
+      placeholder: 'Write a discription of project',
+      tabsize: 2,
+      height: 180,
+      toolbar: [
+        ['style', ['style']],
+        ['font', ['bold', 'underline', 'clear']],
+        ['color', ['color']],
+        ['para', ['ul', 'ol', 'paragraph']],
+        ['table', ['table']],
+        ['insert', ['link', 'picture', 'video']],
+        ['view', ['fullscreen', 'codeview', 'help']]
+      ]
+    });
+  </script>
+
+<%- include('../includes/footer.ejs') %>

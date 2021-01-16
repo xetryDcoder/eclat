@@ -1,0 +1,84 @@
+<%- include('../includes/head.ejs') %>
+
+<!-- Main content -->
+<div class="main-content" id="panel">
+    <!-- Topnav -->
+    <%- include('../includes/alttopnav.ejs') %>
+    <!-- Header -->
+    <!-- Header -->
+    <%- include('../includes/altheader.ejs') %>
+    <!-- Page content -->
+    
+    <div class="row mt-2">
+      <% if (member.length > 0) { %> 
+        <% for (let members of member) { %>
+        <form class="row" action="/putDevAssign" method="POST">
+          <div class="col-md-4">
+            <div class="card card-profile">
+                <img src="../../assets/img/theme/img-1-1000x600.jpg" alt="Image placeholder" class="card-img-top">
+                <div class="row justify-content-center">
+                  <div class="col-lg-3 order-lg-2">
+                    <div class="card-profile-image">
+                      <a href="#">
+                        <img src="../../assets/img/theme/team-4.jpg" class="rounded-circle">
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+                  <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btn-sm btn-info mr-4">Assign</button>
+                    <a href="#" class="btn btn-sm btn-default float-right">Message</a>
+                  </div>
+                </div>
+                <div class="card-body pt-0">
+                  <div class="row">
+                    <div class="col">
+                      <div class="card-profile-stats d-flex justify-content-center">
+                        <div>
+                          <span class="heading">22</span>
+                          <span class="description">Project Done</span>
+                        </div>
+                        <div>
+                          <span class="heading">3</span>
+                          <span class="description">Running</span>
+                        </div>
+                        <div>
+                          <span class="heading">3</span>
+                          <span class="description">Bandwidth</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="text-center">
+                    <span class="text-success">●</span>
+                    <small>Free</small>
+                    <h5 class="h3">
+                      Jessica Jones
+                    </h5>
+                    <input type="hidden" value="<%= projectId %>" name="projectId" >
+                    <input type="hidden" value="<%= members._id %>" name="teamId" >
+                    <h5 class="h5 text-warning">
+                        <%= members.position %> 
+                      </h5>
+                    <div class="h5 font-weight-300">
+                      <i class="ni location_pin mr-2"></i>Bucharest, Romania
+                    </div>
+                    <div class="h5 font-weight-300">
+                      <i class="ni send mr-2"></i><%= members.email %> 
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+        </form>
+        <% } %>
+      <% } else { %> 
+        <div class="h1 card shadow p-3 mx-auto text-warning">
+          No Team Members found!! 
+        </div>
+      <% } %> 
+    </div>   
+  </div>
+
+<%- include('../includes/footer.ejs') %>

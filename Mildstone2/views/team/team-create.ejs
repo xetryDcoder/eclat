@@ -1,0 +1,72 @@
+<%- include('../includes/head.ejs') %>
+
+<!-- Main content -->
+<div class="main-content" id="panel">
+    <!-- Topnav -->
+    <%- include('../includes/alttopnav.ejs') %>
+    <!-- Header -->
+    <!-- Header -->
+    <%- include('../includes/altheader.ejs') %>
+    <!-- Page content -->
+    <div class="card">
+      <!-- Card header -->
+      <div class="card-header">
+        <h3 class="mb-0">Team ID</h3>
+      </div>
+      <!-- Card body -->
+      <div class="card-body">
+        <form action="/team-create"  method="POST">
+          <% if (teamMessage) { %>
+            <p class="p-2 bg-danger text-center text-white border shadow-sm"><%= teamMessage %></p>
+          <% } %>
+          <!-- Input groups with icon -->
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <div class="input-group input-group-merge">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                  </div>
+                  <input class="form-control" placeholder="Position" type="text" name="position">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <div class="input-group input-group-merge">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                  </div>
+                  <input class="form-control" placeholder="Email address" type="email" name="email">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <div class="input-group input-group-merge">
+                  <input class="form-control" name="password" placeholder="Password" type="password">
+                  <div class="input-group-append">
+                    <span class="input-group-text"><i class="fas fa-eye"></i></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <div class="input-group input-group-merge">
+                  <button type="submit" class="btn btn-success">Create Team Member</button>
+                  <div class="input-group-append">
+                    <span class="input-group-text"><i class="fas fa-passport"></i></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div> 
+  </div>
+
+<%- include('../includes/footer.ejs') %>

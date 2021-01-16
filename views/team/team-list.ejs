@@ -12,8 +12,8 @@
     <div class="row mt-2">
       <% if (member.length > 0) { %> 
         <% for (let members of member) { %>
-        <form class="row" action="/putDevAssign" method="POST">
-          <div class="col-md-4">
+        <form class="col-md-4" action="/Assigned-Developer" method="POST">
+          <div class="">
             <div class="card card-profile">
                 <img src="../../assets/img/theme/img-1-1000x600.jpg" alt="Image placeholder" class="card-img-top">
                 <div class="row justify-content-center">
@@ -28,7 +28,7 @@
                 <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
                   <div class="d-flex justify-content-between">
                     <button type="submit" class="btn btn-sm btn-info mr-4">Assign</button>
-                    <a href="#" class="btn btn-sm btn-default float-right">Message</a>
+                    <a href="/Assigned-Developer/<%= members._id %>" class="btn btn-sm btn-default float-right">View Detail</a>
                   </div>
                 </div>
                 <div class="card-body pt-0">

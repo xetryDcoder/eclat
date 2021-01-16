@@ -53,6 +53,10 @@ const adminSchema = new Schema({
     info :{
         type: String
     },
+    dev: [{
+        type: Schema.Types.ObjectId,
+        ref:'Team'
+    }]
     /* ,
     docs: {
         type: Array

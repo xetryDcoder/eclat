@@ -33,6 +33,7 @@ const adminRoutes = require('./routes/admin')
 const authRoutes = require('./routes/auth')
 const teamRoutes = require('./routes/team')
 const adminProfileRoutes = require('./routes/admin-profile')
+const todoRoutes = require('./routes/teamRoute/todo')
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -42,6 +43,7 @@ app.use(adminRoutes)
 app.use(authRoutes)
 app.use(teamRoutes)
 app.use(adminProfileRoutes)
+app.use(todoRoutes);
 
 
 

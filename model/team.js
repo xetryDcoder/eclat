@@ -4,23 +4,35 @@ const bcrypt = require('bcryptjs')
 const Schema = mongoose.Schema
 
 const teamSchema = new Schema({
-    position: {
-        type: String,
-        required: true
+  position: {
+    type: String,
+    required: true,
+  },
+  name: {
+    type: String,
+    required: true,
+  },
+  project: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Admin",
     },
-    project: [{
-        type: Schema.Types.ObjectId,
-        ref:'Admin'
-    }],
-    email: {
-        type: String,
-        required: true
+  ],
+  todo: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Todo",
     },
-    password: {
-        type: String,
-        required:true
-    }
-})
+  ],
+  email: {
+    type: String,
+    required: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+});
 
 teamSchema.pre('save', function(next) {
     const team = this

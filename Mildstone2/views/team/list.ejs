@@ -1,0 +1,146 @@
+<%- include('../includes/head.ejs') %>
+
+<!-- Main content -->
+<div class="main-content" id="panel">
+    <!-- Topnav -->
+    <%- include('../includes/alttopnav.ejs') %>
+    <!-- Header -->
+    <!-- Header -->
+    <%- include('../includes/altheader.ejs') %>
+    <!-- Page content -->
+    <% for( var i = 0; i < result.length; i++ ) { %>
+    <div class="row mt-2">
+        <form class="row">
+          <div class="col-md-4">
+            <div class="card card-profile">
+                <img src="../../assets/img/theme/img-1-1000x600.jpg" alt="Image placeholder" class="card-img-top">
+                <div class="row justify-content-center">
+                  <div class="col-lg-3 order-lg-2">
+                    <div class="card-profile-image">
+                      <a href="#">
+                        <img src="../../assets/img/theme/team-4.jpg" class="rounded-circle">
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+                  <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btn-sm btn-info mr-4">Assign</button>
+                    <a href="#" class="btn btn-sm btn-default float-right">Message</a>
+                  </div>
+                </div>
+                <div class="card-body pt-0">
+                  <div class="row">
+                    <div class="col">
+                      <div class="card-profile-stats d-flex justify-content-center">
+                        <div>
+                          <span class="heading">22</span>
+                          <span class="description">Project Done</span>
+                        </div>
+                        <div>
+                          <span class="heading">3</span>
+                          <span class="description">Running</span>
+                        </div>
+                        <div>
+                          <span class="heading">3</span>
+                          <span class="description">Bandwidth</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="text-center">
+                    <span class="text-success">●</span>
+                    <small>Free</small>
+                    <h5 class="h3">
+                      Jessica Jones
+                    </h5>
+                    <input type="hidden" value="Name" name="teamId" >
+                    <h5 class="h5 text-warning">
+                        <%= result[i].position %>
+                      </h5>
+                    <div class="h5 font-weight-300">
+                      <i class="ni location_pin mr-2"></i>Bucharest, Romania
+                    </div>
+                    <div class="h5 font-weight-300">
+                      <i class="ni send mr-2"></i><%= result[i].email %> 
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <div class="col-md-8">
+          <div class="card">
+              <!-- Card header -->
+              <div class="card-header border-0">
+                <div class="row">
+                  <div class="col-6">
+                    <h3 class="mb-0">Checkbox + Toggles</h3>
+                  </div>
+                  <div class="col-6 text-right">
+                    <a href="#" class="btn btn-sm btn-danger btn-round btn-icon" data-toggle="tooltip" data-original-title="Edit product">
+                      <span class="btn-inner--icon"><i class="fas fa-trash"></i></span>
+                      <span class="btn-inner--text">Delete</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <!-- Light table -->
+              <div class="table-responsive">
+                <table class="table align-items-center table-flush table-hover">
+                  <thead class="thead-light">
+                    <tr>
+                      <th>
+                        <div class="custom-control custom-checkbox">
+                          <input class="custom-control-input" id="table-check-all" type="checkbox">
+                          <label class="custom-control-label" for="table-check-all"></label>
+                        </div>
+                      </th>
+                      <th>Brand Id</th>
+                      <th>Project Name</th>
+                      <th>Deadline</th>
+                      <th>Project Owner</th>
+                      <th>Active</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% for( var j = 0; j < result[i].project.length; j++ ) { let projectList = (result[i].project[j]) %>
+                        <tr>
+                          <th>
+                            <div class="custom-control custom-checkbox">
+                              <input class="custom-control-input" id="table-check-all" type="checkbox">
+                              <label class="custom-control-label" for="table-check-all"></label>
+                            </div>
+                          </th>
+                          <td>
+                            <a href="#" class="avatar rounded-circle mr-3">
+                              <img alt="Image placeholder" src="<%= projectList.logo %>">
+                            </a>
+                          </td>
+                          <td class="table-user">
+                            <b><%= projectList.pName %></b>
+                          </td>
+                          <td>
+                            <span class="text-muted"><%= projectList.endDate %></span>
+                          </td>
+                          <td>
+                            <a href="#!" class="font-weight-bold"><%= projectList.cName %></a>
+                          </td>
+                          <td>
+                            <label class="custom-toggle">
+                              <input type="checkbox" checked="">
+                              <span class="custom-toggle-slider rounded-circle" data-label-off="No" data-label-on="Yes"></span>
+                            </label>
+                          </td>
+                        </tr>
+                        <% } %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+        </div> 
+        </form>
+    </div> 
+    <% } %>   
+  </div>
+
+<%- include('../includes/footer.ejs') %>
